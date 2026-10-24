@@ -1,6 +1,7 @@
 const LeftOutput = (props) => {
 
-    let hasIp = Boolean(props?.data?.ip[0] || props?.data?.ip);
+    // console.log(props?.data?.ip);
+    let hasIp = Boolean(props?.data?.ip?.[0] || props?.data?.ip);
 
     return (
         <div className="w-[50%] bg-gray-200">
@@ -14,7 +15,7 @@ const LeftOutput = (props) => {
             </div>
             <div className="flex mb-6 justify-center">
                 <h3 className="text-2xl font-medium mr-20">IP Address</h3>
-                <h3 className="text-1.5xl text-center w-45 h-7 mt-1 border border-black bg-gray-200">{props?.data?.ip[0] || props?.data?.ip}</h3> 
+                <h3 className="text-1.5xl text-center w-45 h-7 mt-1 border border-black bg-gray-200">{props?.data?.ip?.[0] || props?.data?.ip}</h3> 
             </div>
         </div>
     )

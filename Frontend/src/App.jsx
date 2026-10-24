@@ -11,8 +11,10 @@ const App = () => {
   return (
     <div className="">
       <Navbar />
-      <Form setResult={setResult}/>
-      <Output result={result}/>
+      <Form setResult={setResult} />
+      {result !== null && (
+        <Output result={result} />
+      )}
     </div>
   )
 }
