@@ -1,13 +1,19 @@
 import React from 'react'
 import TopNavbar from './TopNavbar'
 import ValidateContent from './ValidateContent'
+import ValidateData from './ValidateData'
 
 const Validate = () => {
     return (
-        <div className="fixed top-22 w-full">
+        <div className="w-full min-h-screen bg-[#0a1533] pt-22">
             <TopNavbar />
-            <div className="bg-[#0a1533] relative z-10 w-full flex justify-center pb-16 border-b border-[#00FF9D] shadow- [0_1px_15px_rgba(0, 255, 157, 0.1)]">
+
+            <div className="bg-[#0a1533] relative z-10 w-full flex justify-center pb-16 ">
                 <ValidateContent />
+            </div>
+        
+            <div className="bg-[#0a1533] relative z-10 w-full flex justify-center pb-16 border-b border-[#00FF9D] shadow- [0_1px_15px_rgba(0, 255, 157, 0.1)]">
+                <ValidateData />
             </div>
 
         </div>
