@@ -4,7 +4,7 @@ import IPCard from './IPCard'
 
 const LeftValidateData = () => {
     return (
-        <div className="w-[30%] rounded-xl pb-8 flex flex-col gap-10 items-center border border-blue-500/50">
+        <div className="w-[28%] rounded-xl pb-8 flex flex-col gap-18 items-center border border-blue-500/50">
 
             {/*Top Heading of the Left Page*/}
 
@@ -49,7 +49,7 @@ const LeftValidateData = () => {
 
             {/*Real Validate DNS*/}
 
-            <div>
+            <div className="w-full flex justify-center">
                 <IPCard />
             </div>
         </div>

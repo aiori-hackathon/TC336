@@ -19,7 +19,7 @@ const IPCard = (props) => {
 
   return (
     // Main Container
-    <div className="w-72 bg-[#050B14] border border-blue-500/30 rounded-xl p-5 shadow-[0_0_15px_rgba(59,130,246,0.1)]">
+    <div className="w-[70%] bg-[#050B14] border border-blue-500/30 rounded-xl p-5 shadow-[0_0_15px_rgba(59,130,246,0.1)]">
       
       <h2 className="text-[#00ffd0ce] text-2xl font-mono font-semibold tracking-wide">
         {ipAddress}
