@@ -6,6 +6,7 @@ import { useState } from 'react'
 import LandingPage from './components/LandingPage'
 import { Route, Routes } from 'react-router-dom'
 import Validate from './components/Validate'
+import BogusData from './components/BogusData'
 
 const App = () => {
 
@@ -24,6 +25,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<LandingPage />}/>
         <Route path='/validate' element={<Validate />}/>
+        {/* <Route path='/bogus' element={<BogusData />}/> */}
       </Routes>
 
 

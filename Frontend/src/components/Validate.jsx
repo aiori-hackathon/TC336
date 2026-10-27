@@ -7,8 +7,6 @@ const Validate = () => {
 
     const [dnsData, setDnsData] = useState(null);
 
-    console.log(dnsData)
-
     return (
         <div className="w-full min-h-screen bg-[#0a1533] pt-22">
             <TopNavbar />
@@ -20,7 +18,7 @@ const Validate = () => {
             {dnsData? (
 
                 <div className="bg-[#0a1533] relative z-10 w-full flex justify-center pb-16 border-b border-[#00FF9D] shadow- [0_1px_15px_rgba(0, 255, 157, 0.1)]">
-                    <ValidateData dnsData={dnsData} />
+                    <ValidateData dnsData={dnsData} onBack={() => setDnsData(null)}  />
                 </div>
 
             ) : null}

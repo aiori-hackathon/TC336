@@ -87,7 +87,8 @@ router.post('/finddomain', async (req, res) => {
         if (result.status === "BOGUS") {
             return res.status(400).json({
                 status: "BOGUS",
-                message: result.error || "DNSSEC Validation Failed or Domain Not Found!"
+                message: result.error || "DNSSEC Validation Failed or Domain Not Found!",
+                domain: domainObj.domain
             });
         }
 

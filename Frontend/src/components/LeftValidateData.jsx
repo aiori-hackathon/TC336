@@ -14,7 +14,7 @@ const LeftValidateData = (props) => {
                 <h1>Status & IP</h1>
             </div>
 
-            <div className="w-full flex flex-col items-center gap-4">
+            <div className="w-full flex flex-col items-center gap-6 mt-4">
 
                 <div className="w-[70%] flex justify-center items-center gap-4 bg-[#0A1128] border border-blue-500/20 p-2 pr-6 rounded-xl">
                     <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${status === "SECURE" ? "bg-[#00FF9D]/10" : "bg-gray-800"}`}>
@@ -30,16 +30,16 @@ const LeftValidateData = (props) => {
                     <span className={`font-medium ${status === "INSECURE" ? "text-white" : "text-gray-500"}`}>Insecure</span>
                 </div>
 
-                <div className="w-[70%] flex justify-center items-center gap-4 bg-[#0A1128] border border-blue-500/20 p-2 pr-6 rounded-xl">
+                {/* <div className="w-[70%] flex justify-center items-center gap-4 bg-[#0A1128] border border-blue-500/20 p-2 pr-6 rounded-xl">
                     <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${status === "BOGUS" ? "bg-red-500/10" : "bg-gray-800"}`}>
                         <div className={`w-5 h-5 rounded-full ${status === "BOGUS" ? "bg-red-500 shadow-[0_0_15px_rgba(239,68,68,0.8)]" : "bg-gray-600"}`}></div>
                     </div>
                     <span className={`font-medium ${status === "BOGUS" ? "text-white" : "text-gray-500"}`}>Bogus</span>
-                </div>
+                </div> */}
 
             </div>
 
-            <div className="w-full flex justify-center">
+            <div className="w-full flex justify-center mt-4">
                 <IPCard dnsData={props.dnsData}/>
             </div>
         </div>
