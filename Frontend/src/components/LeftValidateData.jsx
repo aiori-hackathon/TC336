@@ -2,7 +2,8 @@ import React from 'react'
 import { ShieldCheck, DatabaseSearch, ShieldEllipsis } from 'lucide-react'
 import IPCard from './IPCard'
 
-const LeftValidateData = () => {
+const LeftValidateData = (props) => {
+    console.log()
     return (
         <div className="w-[28%] rounded-xl pb-8 flex flex-col gap-18 items-center border border-blue-500/50">
 
@@ -50,7 +51,7 @@ const LeftValidateData = () => {
             {/*Real Validate DNS*/}
 
             <div className="w-full flex justify-center">
-                <IPCard />
+                <IPCard dnsData={props.dnsData}/>
             </div>
         </div>
     )

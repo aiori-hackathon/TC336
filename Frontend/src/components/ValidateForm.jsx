@@ -1,15 +1,41 @@
-    import React from 'react'
+    import React, { useState } from 'react'
     import { Search } from 'lucide-react'
+    import axios from 'axios'
 
-    const ValidateForm = () => {
+    const ValidateForm = (props) => {
+
+        const [formData, setFormData] = useState({url : ""})
+
+        const formSubmit = async (e)=>{
+
+            e.preventDefault();
+            // console.log("submit")
+
+            try{
+                const res = await axios.post('https://localhost:3000/domain/finddomain', {domain: formData.url});
+                console.log(res.data)
+                props.setDnsData(res.data);
+            }catch(err){
+                console.log(err.response.data)
+            }
+            
+            
+            setFormData({url: ""});
+        }
+
+        const formHandeler = (e)=>{
+            setFormData({...formData, [e.target.name]: e.target.value });
+            // console.log(e.target.value)
+        }
+
         return (
             <div className="w-[90%] md:w-[80%] mx-auto my-10 py-4 border  border-blue-500/50 rounded-lg p-1.5 shadow-[0_0_15px_rgba(59,130,246,0.15)]">
 
-                <form className="flex flex-col md:flex-row items-center justify-between gap-4 w-full px-2">
+                <form onSubmit={(e)=>{formSubmit(e)}} className="flex flex-col md:flex-row items-center justify-between gap-4 w-full px-2">
 
                     <div className="w-full md:w-[80%] rounded-2xl border bg-[#071948] flex h-16 items-center gap-4">
                         <Search className='ml-4'/>
-                        <input className="focus:outline-none focus:ring-0 focus:border-blue-500/50 w-[90%]" type="text" placeholder='e g, example.com, iot.device.local' />
+                        <input onChange={(e)=>{formHandeler(e)}} value={formData.url} name="url" className="focus:outline-none focus:ring-0 focus:border-blue-500/50 w-[90%]" type="text" placeholder='e g, example.com, iot.device.local' />
                     </div>
                     
                     <button className="w-full md:w-auto px-8 py-3 md:py-4 text-[18px] rounded-xl font-bold text-black bg-linear-to-r from-[#00FFD1] to-[#00B3FF] shadow-[0_0_15px_rgba(0,255,209,0.4)] hover:scale-105 transition-transform">

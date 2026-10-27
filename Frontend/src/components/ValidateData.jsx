@@ -4,13 +4,13 @@ import LeftValidateData from './LeftValidateData'
 import MiddleValidateData from './MiddleValidateData'
 import RightValidateData from './RightValidateData'
 
-const ValidateData = () => {
+const ValidateData = (props) => {
     return (
         <div className="w-full flex gap-4 justify-around">
 
-            <LeftValidateData />
-            <MiddleValidateData />
-            <RightValidateData />
+            <LeftValidateData dnsData = {props.dnsData}/>
+            <MiddleValidateData dnsData = {props.dnsData}/>
+            <RightValidateData dnsData = {props.dnsData}/>
             
         </div>
     )

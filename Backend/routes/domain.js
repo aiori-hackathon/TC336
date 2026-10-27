@@ -10,30 +10,30 @@ router.post('/finddomain', async (req, res) => {
         const domainName = domainObj.domain.toLowerCase();
 
         const startTime = Date.now();
-        const startUsage = process.cpuUsage(); 
+        const startUsage = process.cpuUsage();
 
         const ip = await resolver.resolve4(domainObj.domain);
 
         let status = "SECURE";
-        try{
+        try {
             await resolver.resolve(domainName, 'DS');
-        }catch(dsError){
+        } catch (dsError) {
             status = "INSECURE";
         }
 
         const latency = Date.now() - startTime;
         const cpuDiff = process.cpuUsage(startUsage);
 
-        const cpuUsedMs = ((cpuDiff.user + cpuDiff.system) / 1000);
-        const memoryUserMB = (process.memoryUsage().heapUsed/ 1024 / 1024).toFixed(2);
+        const cpuUsedMs = ((cpuDiff.user + cpuDiff.system) / 1000).toFixed(4);
+        const memoryUserMB = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2);
 
 
-        return res.status(202).json({status: status, message: "IP Get SuccessFully", ip: ip, latency: latency, cpuUsed: cpuUsedMs, memoryUsed: memoryUserMB})
+        return res.status(202).json({ domain: domainObj.domain, status: status, message: "IP Get SuccessFully", ip: ip, latency: latency, cpuUsed: cpuUsedMs, memoryUsed: memoryUserMB })
     }
     catch (err) {
-        return res.status(400).json({ 
-            status: "BOGUS", 
-            message: "DNSSEC Validation Failed or Domain Not Found!" 
+        return res.status(400).json({
+            status: "BOGUS",
+            message: "DNSSEC Validation Failed or Domain Not Found!"
         })
     }
 })

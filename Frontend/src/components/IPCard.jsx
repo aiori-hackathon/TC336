@@ -3,8 +3,8 @@ import { Copy, Check } from 'lucide-react';
 
 const IPCard = (props) => {
 
-  const domain = props.domain || "example.com"; 
-  const ipAddress = props.ip || "IP Address";
+  const domain = props?.dnsData?.domain || "example.com"; 
+  const ipAddress = props?.dnsData?.ip[0] || "IP Address";
 
   const [copied, setCopied] = useState(false);
 
@@ -22,7 +22,7 @@ const IPCard = (props) => {
     <div className="w-[70%] bg-[#050B14] border border-blue-500/30 rounded-xl p-5 shadow-[0_0_15px_rgba(59,130,246,0.1)]">
       
       <h2 className="text-[#00ffd0ce] text-2xl font-mono font-semibold tracking-wide">
-        {ipAddress}
+        {props?.dnsData?.ip[0]}
       </h2>
 
       <div className="w-full h-px bg-blue-500/20 my-3"></div>

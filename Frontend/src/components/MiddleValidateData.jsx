@@ -2,7 +2,7 @@ import React from 'react'
 import { ShieldCheck, DatabaseSearch, ShieldEllipsis } from 'lucide-react'
 import CircularDataBar from './CircularDataBar'
 
-const MiddleValidateData = () => {
+const MiddleValidateData = (props) => {
     return (
         <div className="w-[28%] rounded-xl pb-8 flex flex-col items-center border border-blue-500/50">
 
@@ -11,13 +11,13 @@ const MiddleValidateData = () => {
                 <h1>Performance & Metrics</h1>
             </div>
             <div className="mt-12">
-                <CircularDataBar />
+                <CircularDataBar data={props?.dnsData?.latency} name={"Latency"} unit={"ms "} maxValue={200}/>
             </div>
             <div className="mt-6">
-                <CircularDataBar />
+                <CircularDataBar data={props?.dnsData?.cpuUsed} name={"Cpu Used"} unit={"ms"} maxValue={10}/>
             </div>
             <div className="mt-6">
-                <CircularDataBar />
+                <CircularDataBar data={props?.dnsData?.memoryUsed} name={"Memory Used"} unit={"mb"} maxValue={50}/>
             </div>
 
         </div>
