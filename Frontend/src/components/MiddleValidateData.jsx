@@ -11,7 +11,7 @@ const MiddleValidateData = (props) => {
                 <h1>Performance & Metrics</h1>
             </div>
             <div className="mt-12">
-                <CircularDataBar data={props?.dnsData?.latency} name={"Latency"} unit={"ms "} maxValue={200}/>
+                <CircularDataBar data={props?.dnsData?.latency} name={"Latency"} unit={"ms "} maxValue={500}/>
             </div>
             <div className="mt-6">
                 <CircularDataBar data={props?.dnsData?.cpuUsed} name={"Cpu Used"} unit={"ms"} maxValue={10}/>

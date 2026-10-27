@@ -17,9 +17,9 @@
 
           <div className="w-24.5 h-24.5 bg-[#0a1533] rounded-full flex items-center justify-center flex-col shadow-inner">
             
-            <span className="text-3xl font-bold text-white">
+            <span className="text-[16px] font-bold text-white">
               {props.data}
-              <span className="text-lg text-gray-300 ml-1">{props.unit}</span>
+              <span className="text-[14px] text-gray-300 ml-1">{props.unit}</span>
             </span>
             
           </div>

@@ -5,10 +5,17 @@
     const ValidateForm = (props) => {
 
         const [formData, setFormData] = useState({url : ""})
+        const [loading, setLoading] = useState(false)
 
         const formSubmit = async (e)=>{
 
             e.preventDefault();
+            if(!formData.url.trim()){
+                return;
+            }
+
+            setLoading(false);
+            props.setDnsData(null);
             // console.log("submit")
 
             try{

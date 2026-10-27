@@ -14,12 +14,16 @@ const Validate = () => {
             <TopNavbar />
 
             <div className="bg-[#0a1533] relative z-10 w-full flex justify-center pb-16 ">
-                <ValidateContent setDnsData = {setDnsData}/>
+                <ValidateContent setDnsData={setDnsData} />
             </div>
-        
-            <div className="bg-[#0a1533] relative z-10 w-full flex justify-center pb-16 border-b border-[#00FF9D] shadow- [0_1px_15px_rgba(0, 255, 157, 0.1)]">
-                <ValidateData dnsData={dnsData}/>
-            </div>
+
+            {dnsData? (
+
+                <div className="bg-[#0a1533] relative z-10 w-full flex justify-center pb-16 border-b border-[#00FF9D] shadow- [0_1px_15px_rgba(0, 255, 157, 0.1)]">
+                    <ValidateData dnsData={dnsData} />
+                </div>
+
+            ) : null}
 
         </div>
     )
