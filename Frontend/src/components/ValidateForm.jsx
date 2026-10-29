@@ -19,7 +19,8 @@
             // console.log("submit")
 
             try{
-                const res = await axios.post('https://localhost:3000/domain/finddomain', {domain: formData.url});
+                // const res = await axios.post('https://localhost:3000/domain/finddomain', {domain: formData.url});
+                const res = await axios.post('/api/domain/finddomain', {domain: formData.url});
                 console.log(res.data)
                 props.setDnsData(res.data);
             }catch(err){

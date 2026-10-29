@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # 1. DNS Resolver (Unbound)
+  unbound:
+    image: bigbeartechworld/big-bear-unbound:latest
+    container_name: unbound
+    ports:
+      - "5335:53/udp"
+      - "5335:53/tcp"
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  # 2. Backend (Node.js/Express)
+  backend:
+    build: 
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DNS_SERVER=unbound 
+      - DNS_PORT=53       # Unbound ka default internal port
+    depends_on:
+      - unbound
+    networks:
+      - app-network
+
+  # 3. Frontend (React + Nginx)
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "8000:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

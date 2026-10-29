@@ -14,10 +14,10 @@ const MiddleValidateData = (props) => {
                 <CircularDataBar data={props?.dnsData?.latency} name={"Latency"} unit={"ms "} maxValue={500}/>
             </div>
             <div className="mt-6">
-                <CircularDataBar data={props?.dnsData?.cpuUsed} name={"Cpu Used"} unit={"ms"} maxValue={10}/>
+                <CircularDataBar data={props?.dnsData?.cpuUsed} name={"Cpu Used"} unit={"ms"} maxValue={100}/>
             </div>
             <div className="mt-6">
-                <CircularDataBar data={props?.dnsData?.memoryUsed} name={"Memory Used"} unit={"mb"} maxValue={50}/>
+                <CircularDataBar data={props?.dnsData?.memoryUsed} name={"Memory Used"} unit={"mb"} maxValue={100}/>
             </div>
 
         </div>

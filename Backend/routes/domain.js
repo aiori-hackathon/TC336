@@ -4,8 +4,11 @@ var dnsPacket = require('dns-packet');
 var dgram = require('dgram');
 const { performance } = require('perf_hooks');
 
-const DNS_SERVER = '172.28.142.244';
-const DNS_PORT = 5335;
+// const DNS_SERVER = '172.28.142.244';
+// const DNS_PORT = 5335;
+
+const DNS_SERVER = process.env.DNS_SERVER || 'unbound'; 
+const DNS_PORT = process.env.DNS_PORT || 53;
 
 function checkDNSSEC(domain) {
     return new Promise((resolve) => {
