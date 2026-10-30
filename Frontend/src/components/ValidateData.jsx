@@ -7,10 +7,8 @@ import BogusData from './BogusData';
 const ValidateData = (props) => {
 
     const isBogus = props.dnsData.status === "BOGUS";
-    console.log(isBogus)
     
     if (isBogus) {
-        // ✅ Data aur onBack dono pass karo
         return <BogusData dnsData={props.dnsData} onBack={props.onBack} />;
     }
     

@@ -1,7 +1,16 @@
 version: '3.8'
 
 services:
-  # 1. DNS Resolver (Unbound)
+  # 1. MongoDB (Naya add kiya)
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+
+  # 2. DNS Resolver (Unbound)
   unbound:
     image: bigbeartechworld/big-bear-unbound:latest
     container_name: unbound
@@ -12,9 +21,9 @@ services:
     networks:
       - app-network
 
-  # 2. Backend (Node.js/Express)
+  # 3. Backend (Node.js/Express)
   backend:
-    build: 
+    build:
       context: ./Backend
       dockerfile: Dockerfile
     container_name: backend
@@ -22,21 +31,28 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-      - DNS_SERVER=unbound 
-      - DNS_PORT=53       # Unbound ka default internal port
+      - DNS_SERVER=unbound
+      - DNS_PORT=53
+      # ✅ MongoDB connection string Docker network ke liye
+      - MONGO_URL=mongodb://mongodb:27017/dnssec_gateway
     depends_on:
       - unbound
+      - mongodb
     networks:
       - app-network
 
-  # 3. Frontend (React + Nginx)
+  # 4. Frontend (React + Nginx)
   frontend:
     build:
       context: ./Frontend
       dockerfile: Dockerfile
     container_name: frontend
     ports:
-      - "8000:80"
+      - "5173:5173" # 👈 Vite ka port
+    volumes:
+      - ./Frontend:/app # 👈 Code sync ho jayega (changes turant dikhenge)
+      - /app/node_modules # 👈 Container apne modules use karega
+    command: npm run dev -- --host # 👈 Nginx ki jagah Vite chalao
     depends_on:
       - backend
     networks:

@@ -4,12 +4,19 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var domainRouter = require('./routes/domain');
+var mongoose = require('mongoose'); 
 
-var app = express();
+var app = express();  
+
+
+mongoose.connect(process.env.MONGO_URL || "mongodb://mongodb:27017/dnssec_gateway")
+  .then(() => console.log("✅ MongoDB Connected Successfully"))
+  .catch((err) => console.log("❌ MongoDB Connection Error:", err));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,7 +28,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true })); // <-- CORS middleware add kiya
+app.use(cors({ origin: "*", credentials: true })); // <-- CORS middleware add kiya
 
 app.use(logger('dev'));
 app.use(express.json());
