@@ -28,22 +28,39 @@ The project is divided into multiple microservices containerized using Docker:
 Prerequisites: Ensure Docker Desktop is installed and running on your system.
 
 Step 1: Clone the repository and navigate to the root directory.
+```bash
 git clone <repository-link>
 cd AIORI-3-DNSSEC
+```
 
 Step 2: Build and start all the containers using a single command.
+
+```bash
 docker compose up -d --build
+```
 
 Step 3: Verify that all services are running properly.
+
+```bash
 docker compose ps
+```
 (You should see 5 containers: backend, frontend, mongodb, unbound, and local-dns-server in "Up" status).
 
 Step 4: Open the Frontend in your browser.
+
+```bash
 http://localhost:5173
+```
 
 Step 5 (Optional): To run the simulated IoT Client and test Certificate Pinning, use this command:
+
+```bash
 docker exec -it backend node ../Iot-Client/client.js
+```
 
 To stop the project:
+
+```bash
 docker compose down
-docker compose down
+```
+
