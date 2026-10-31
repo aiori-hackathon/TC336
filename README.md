@@ -24,11 +24,26 @@ The project is divided into multiple microservices containerized using Docker:
 5. **MongoDB:** Stores the query history and performance metrics.
 6. **IoT Client (Node.js):** Simulates a real IoT device with TLS Certificate Pinning for secure communication.
 
-## 🚀 How to Run the Project (Docker)
+🚀 How to Run the Project (Docker)
+Prerequisites: Ensure Docker Desktop is installed and running on your system.
 
-**Prerequisites:** Ensure Docker Desktop is installed and running on your system.
-
-**Step 1:** Clone the repository and navigate to the root directory.
-```bash
+Step 1: Clone the repository and navigate to the root directory.
 git clone <repository-link>
 cd AIORI-3-DNSSEC
+
+Step 2: Build and start all the containers using a single command.
+docker compose up -d --build
+
+Step 3: Verify that all services are running properly.
+docker compose ps
+(You should see 5 containers: backend, frontend, mongodb, unbound, and local-dns-server in "Up" status).
+
+Step 4: Open the Frontend in your browser.
+http://localhost:5173
+
+Step 5 (Optional): To run the simulated IoT Client and test Certificate Pinning, use this command:
+docker exec -it backend node ../Iot-Client/client.js
+
+To stop the project:
+docker compose down
+docker compose down
