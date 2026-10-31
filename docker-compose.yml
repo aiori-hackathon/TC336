@@ -1,7 +1,6 @@
 version: '3.8'
 
 services:
-  # 1. MongoDB (Naya add kiya)
   mongodb:
     image: mongo:latest
     container_name: mongodb
@@ -10,49 +9,52 @@ services:
     networks:
       - app-network
 
-  # 2. DNS Resolver (Unbound)
   unbound:
-    image: bigbeartechworld/big-bear-unbound:latest
+    image: klutchell/unbound:latest 
     container_name: unbound
     ports:
       - "5335:53/udp"
       - "5335:53/tcp"
-    restart: unless-stopped
+    volumes:
+      - ./unbound/unbound.conf:/opt/unbound/etc/unbound/unbound.conf:ro
     networks:
       - app-network
 
-  # 3. Backend (Node.js/Express)
+  # ✅ Naya Local DNS Server (dnsmasq)
+  local-dns-server:
+    image: node:20-alpine
+    container_name: local-dns-server
+    working_dir: /app
+    command: sh -c "npm install dns-packet && node server.js"
+    volumes:
+      - ./localdns:/app
+    ports:
+      - "5354:53/udp"
+      - "5354:53/tcp"
+    networks:
+      - app-network
+
   backend:
-    build:
-      context: ./Backend
-      dockerfile: Dockerfile
+    build: ./Backend
     container_name: backend
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENV=production
-      - DNS_SERVER=unbound
-      - DNS_PORT=53
-      # ✅ MongoDB connection string Docker network ke liye
       - MONGO_URL=mongodb://mongodb:27017/dnssec_gateway
+      - UNBOUND_IP=unbound
+      - BIND_IP=local-dns-server # ✅ Ye update karo
     depends_on:
-      - unbound
       - mongodb
+      - unbound
+      - local-dns-server # ✅ Ye update karo
     networks:
       - app-network
 
-  # 4. Frontend (React + Nginx)
   frontend:
-    build:
-      context: ./Frontend
-      dockerfile: Dockerfile
+    build: ./Frontend
     container_name: frontend
     ports:
-      - "5173:5173" # 👈 Vite ka port
-    volumes:
-      - ./Frontend:/app # 👈 Code sync ho jayega (changes turant dikhenge)
-      - /app/node_modules # 👈 Container apne modules use karega
-    command: npm run dev -- --host # 👈 Nginx ki jagah Vite chalao
+      - "5173:5173"
     depends_on:
       - backend
     networks:
