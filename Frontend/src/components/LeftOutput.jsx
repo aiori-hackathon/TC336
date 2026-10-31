@@ -1,6 +1,5 @@
 const LeftOutput = (props) => {
 
-    // console.log(props?.data?.ip);
     let hasIp = Boolean(props?.data?.ip?.[0] || props?.data?.ip);
 
     return (

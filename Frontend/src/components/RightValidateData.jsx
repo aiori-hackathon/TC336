@@ -1,5 +1,5 @@
 import React from 'react'
-import { ShieldCheck, DatabaseSearch, ShieldEllipsis, ShieldLock } from 'lucide-react'
+import { ShieldCheck, Database, ShieldEllipsis } from 'lucide-react'
 
 const RightValidateData = () => {
     return (
@@ -10,7 +10,7 @@ const RightValidateData = () => {
                 <h1>Protocol Info</h1>
             </div>
             <div className="mt-10 flex flex-col gap-4 items-center justify-center w-[60%] h-60 border border-blue-500/15 border-b-blue-600/40">
-                <ShieldLock className="text-green-300" size={100} />
+                <ShieldCheck className="text-green-300" size={100} />
                 <h1 className="text-3xl text-white font-semibold">TLS/ DTLS</h1>
             </div>
 
@@ -24,7 +24,7 @@ const RightValidateData = () => {
 
             <div className="w-[80%] mt-10 flex flex-col mx-20 gap-2 pb-3 border-b border-blue-400/40">
                 <h1 className="text-[22px] text-gray-400 font-semibold ">Protocol</h1>
-                <h1 className="text-[26px] text-gray-200 font-semibold ">DTLS 1.3</h1>
+                <h1 className="text-[26px] text-gray-200 font-semibold ">TLS 1.3</h1>
             </div>
 
         </div>

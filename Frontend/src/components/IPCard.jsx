@@ -18,7 +18,7 @@ const IPCard = (props) => {
   };
 
   return (
-    // Main Container
+
     <div className="w-[70%] bg-[#050B14] border border-blue-500/30 rounded-xl p-5 shadow-[0_0_15px_rgba(59,130,246,0.1)]">
       
       <h2 className="text-[#00ffd0ce] text-2xl font-mono font-semibold tracking-wide">
@@ -37,9 +37,9 @@ const IPCard = (props) => {
           className="text-gray-400 hover:text-[#00FFD1] transition-colors p-1"
         >
           {copied ? (
-            <Check className="w-4 h-4 text-[#00FFD1]" /> // Copy hone par Tick
+            <Check className="w-4 h-4 text-[#00FFD1]" />
           ) : (
-            <Copy className="w-4 h-4" /> // Normal Copy icon
+            <Copy className="w-4 h-4" />
           )}
         </button>
       </div>

@@ -12,7 +12,7 @@ const HistoryPage = () => {
             <TopNavbar />
             
             <div className="w-[90%] md:w-[80%] mt-10 flex flex-col">
-                {/* Back Button */}
+
                 <button 
                     onClick={() => navigate('/validate')} 
                     className="flex items-center gap-2 text-blue-300 hover:text-white transition-colors w-fit mb-6"
@@ -23,7 +23,7 @@ const HistoryPage = () => {
 
                 <h1 className="text-3xl font-bold text-white mb-6">Full Validation History</h1>
                 
-                {/* Isme saara data aayega */}
+
                 <HistoryDataBox limit={null} /> 
             </div>
         </div>

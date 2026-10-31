@@ -12,18 +12,17 @@ const ValidateForm = (props) => {
         if (!formData.url.trim()) return;
 
         setLoading(true);
-        props.setDnsData(null); // Purana data clear karo
+        props.setDnsData(null);
 
         try {
-            // 1. Pehle DNS Validate karo
+
             // const res = await axios.post('/api/domain/finddomain', { domain: formData.url });
             const res = await axios.post('/api/domain/finddomain', { domain: formData.url });
 
-            // Agar success hua, toh UI mein data dikhao
             props.setDnsData(res.data);
-            setFormData({ url: "" }); // ✅ Sirf success hone par form clear karo
+            setFormData({ url: "" });
 
-            // 2. Ab Data Save karo (Agar save fail bhi ho jaye, toh UI kharab na ho)
+
             try {
                 const saveRes = await axios.post('/api/users/saveData', {
                     url: res.data.domain,
@@ -43,18 +42,12 @@ const ValidateForm = (props) => {
                 console.log("❌ Save Data Error (500):", saveErr.response?.data || saveErr.message);
             }
 
-            // try {
-            //     const getAllData = await axios.get('/api/users/getAllData');
-            //     props.setHistoryData(getAllData.data);
-            // }catch(historyErr){
-            //     console.log("❌ Save Data Error (500):", historyErr.response?.data || historyErr.message);
-            // }
 
         } catch (err) {
-            // Agar BOGUS domain aaya, toh yahan aayega (400 error)
+            
             if (err.response && err.response.data) {
                 props.setDnsData(err.response.data);
-                // ✅ BOGUS aane par input box ko blank mat karo, taaki user sudhar sake
+                
             }
         } finally {
             setLoading(false);
@@ -73,7 +66,7 @@ const ValidateForm = (props) => {
 
                 <div className="w-full md:w-[80%] rounded-2xl border bg-[#071948] flex h-16 items-center gap-4">
                     <Search className='ml-4' />
-                    <input onChange={(e) => { formHandeler(e) }} value={formData.url} name="url" className="focus:outline-none focus:ring-0 focus:border-blue-500/50 w-[90%]" type="text" placeholder='e g, example.com, iot.device.local' />
+                    <input onChange={(e) => { formHandeler(e) }} value={formData.url} name="url" className="focus:outline-none focus:ring-0 focus:border-blue-500/50 w-[90%] bg-transparent text-white autofill:bg-transparent autofill:text-white [&:-webkit-autofill]:[-webkit-text-fill-color:white] [&:-webkit-autofill]:shadow-[0_0_0_1000px_#071948_inset] transition-all" type="text" placeholder='e g, example.com, iot.device.local' />
                 </div>
 
                 <button className="w-full md:w-auto px-8 py-3 md:py-4 text-[18px] rounded-xl font-bold text-black bg-linear-to-r from-[#00FFD1] to-[#00B3FF] shadow-[0_0_15px_rgba(0,255,209,0.4)] hover:scale-105 transition-transform">

@@ -16,7 +16,7 @@ const Validate = () => {
     // console.log(savedData)
 
     return (
-        // ✅ flex-col aur min-h-screen yahan lagaya hai
+
         <div className="w-full flex flex-col items-center min-h-screen bg-[#0a1533] pt-22">
             <TopNavbar />
 
@@ -30,7 +30,6 @@ const Validate = () => {
                 </div>
             ) : null}
 
-            {/* ✅ mt-auto aur absolute hataya */}
 
             <HistoryDataBox refreshHistoryData={refreshHistoryData} limit={10} />
 
