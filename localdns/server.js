@@ -8,10 +8,9 @@ server.on('message', (msg, rinfo) => {
         const query = dnsPacket.decode(msg);
         const domain = query.questions[0].name;
         
-        console.log(`Query aayi: ${domain}`);
+        console.log(`Query: ${domain}`);
 
         if (domain.includes('device.test')) {
-            // ✅ Ekdum saaf aur simple response
             const response = dnsPacket.encode({
                 type: 'response',
                 id: query.id,
@@ -27,7 +26,7 @@ server.on('message', (msg, rinfo) => {
             });
             
             server.send(response, rinfo.port, rinfo.address);
-            console.log(`✅ IP bheja: 192.168.1.100`);
+            console.log(`✅ IP : 192.168.1.100`);
         } else {
             const response = dnsPacket.encode({
                 type: 'response',
@@ -37,7 +36,7 @@ server.on('message', (msg, rinfo) => {
                 questions: query.questions
             });
             server.send(response, rinfo.port, rinfo.address);
-            console.log(`❌ NXDOMAIN bheja`);
+            console.log(`❌ Send NXDOMAIN `);
         }
     } catch (err) {
         console.log("Error:", err.message);
@@ -45,5 +44,5 @@ server.on('message', (msg, rinfo) => {
 });
 
 server.bind(53, '0.0.0.0', () => {
-    console.log('✅ Local DNS Server 53 port par chal raha hai');
+    console.log('✅ Local DNS Server is running on port 53');
 });

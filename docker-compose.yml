@@ -20,7 +20,6 @@ services:
     networks:
       - app-network
 
-  # ✅ Naya Local DNS Server (dnsmasq)
   local-dns-server:
     image: node:20-alpine
     container_name: local-dns-server
@@ -42,11 +41,11 @@ services:
     environment:
       - MONGO_URL=mongodb://mongodb:27017/dnssec_gateway
       - UNBOUND_IP=unbound
-      - BIND_IP=local-dns-server # ✅ Ye update karo
+      - BIND_IP=local-dns-server
     depends_on:
       - mongodb
       - unbound
-      - local-dns-server # ✅ Ye update karo
+      - local-dns-server
     networks:
       - app-network
 
